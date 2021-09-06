@@ -25,15 +25,15 @@ class ResearchConsentForm(forms.Form):
     )
     condition_4 = forms.BooleanField(
         required=True,
-        label='I understand that any information or opinions I provide will be kept confidential to the researcher and her supervisor and that any published or reported results will not identify the participants. I understand that the report for this research project will be made available on the UC website.'  # noqa: E501
+        label='I understand that any information or opinions I provide will be kept confidential to the researcher and his supervisor and that any published or reported results will not identify the participants.'  # noqa: E501
     )
     condition_5 = forms.BooleanField(
         required=True,
-        label='I understand that all data collected for the study will be kept in password protected electronic form and will be destroyed after five years.'  # noqa: E501
+        label='I understand that all data collected for the study will be kept in password protected electronic form and will be destroyed on completion of the project.'  # noqa: E501
     )
     condition_6 = forms.BooleanField(
         required=True,
-        label='I understand that I can contact the researcher Lucy Turner at ltt19@uclive.ac.nz or supervisor Tim Bell at tim.bell@canterbury.ac.nz for further information. If I have any complaints, I can contact the Chair of the University of Canterbury Educational Research Human Ethics Committee, Private Bag 4800, Christchurch (human-ethics@canterbury.ac.nz).'  # noqa: E501
+        label='I understand that I can contact the researcher Jackie Qiu at jqi26@uclive.ac.nz or supervisor Tim Bell at tim.bell@canterbury.ac.nz for further information. If I have any complaints, I can contact the Chair of the University of Canterbury Educational Research Human Ethics Committee, Private Bag 4800, Christchurch (human-ethics@canterbury.ac.nz).'  # noqa: E501
     )
     condition_7 = forms.BooleanField(
         required=True,
