@@ -13,9 +13,9 @@ x-default-opts:
 
 x-django-config:
     &django-config
-    image: ghcr.io/uccser/codewof:${CODEWOF_IMAGE_TAG}
+    image: ghcr.io/jqi26/codewof:research-study-goals
     environment:
-        CODEWOF_DOMAIN: ${CODEWOF_DOMAIN}
+        CODEWOF_DOMAIN: uccser-study-one.csse.canterbury.ac.nz
         POSTGRES_HOST: postgres
         POSTGRES_PORT: "5432"
         DEPLOYMENT_ENVIRONMENT_FILE: /codewof_deployment_environment
@@ -58,10 +58,10 @@ services:
             labels:
                 - "traefik.enable=true"
                 - "traefik.docker.network=uccser-public"
-                - "traefik.http.services.codewof-django.loadbalancer.server.port=8000"
-                - "traefik.http.routers.codewof-django.service=codewof-django"
-                - "traefik.http.routers.codewof-django.rule=Host(`${CODEWOF_DOMAIN}`)"
-                - "traefik.http.routers.codewof-django.entryPoints=web"
+                - "traefik.http.services.research-one-django.loadbalancer.server.port=8000"
+                - "traefik.http.routers.research-one.service=research-one-django"
+                - "traefik.http.routers.research-one-django.rule=Host(`uccser-study-one.csse.canterbury.ac.nz`)"
+                - "traefik.http.routers.research-one-django.entryPoints=web"
         networks:
             - uccser-public
             - backend
