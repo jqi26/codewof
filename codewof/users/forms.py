@@ -147,7 +147,11 @@ class UserAdminChangeForm(auth.forms.UserChangeForm):
         """Metadata for UserAdminChangeForm class."""
 
         model = User
-        fields = ('email', 'last_name', 'user_type')
+        fields = (
+            'email',
+            'last_name',
+            'user_type',
+        )
 
 
 class UserAdminCreationForm(auth.forms.UserCreationForm):
@@ -157,7 +161,12 @@ class UserAdminCreationForm(auth.forms.UserCreationForm):
         """Metadata for UserAdminCreationForm class."""
 
         model = User
-        fields = ('email', 'first_name', 'last_name', 'user_type')
+        fields = (
+            'email',
+            'first_name',
+            'last_name',
+            'user_type',
+        )
 
 
 class GroupCreateUpdateForm(forms.ModelForm):

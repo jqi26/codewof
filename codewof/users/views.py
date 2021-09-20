@@ -22,6 +22,11 @@ from rest_framework.permissions import IsAdminUser
 from users.serializers import (
     UserSerializer,
     UserTypeSerializer,
+    GroupSerializer,
+    MembershipSerializer,
+    GroupRoleSerializer,
+    InvitationSerializer,
+    EmailReminderSerializer,
 )
 from programming import settings as programming_settings
 from users.forms import UserChangeForm, GroupCreateUpdateForm, GroupInvitationsForm
@@ -39,6 +44,7 @@ from users.models import (
     GroupRole,
     Invitation,
     UserType,
+    EmailReminder,
 )
 from programming.codewof_utils import get_questions_answered_in_past_month, backdate_user
 from users.mixins import AdminRequiredMixin, AdminOrMemberRequiredMixin, SufficientAdminsMixin, \
@@ -462,3 +468,43 @@ def get_group_emails(request, pk, group):
     """View for obtaining the email addresses of the members of the group."""
     emails_list = list(group.users.values_list('email', flat=True))
     return JsonResponse({"emails": emails_list})
+
+
+class GroupAPIViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint that allows groups to be viewed."""
+
+    permission_classes = [IsAdminUser]
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+
+class MembershipAPIViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint that allows group memberships to be viewed."""
+
+    permission_classes = [IsAdminUser]
+    queryset = Membership.objects.all().select_related('user', 'group', 'role')
+    serializer_class = MembershipSerializer
+
+
+class GroupRoleAPIViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint that allows group roles to be viewed."""
+
+    permission_classes = [IsAdminUser]
+    queryset = GroupRole.objects.all()
+    serializer_class = GroupRoleSerializer
+
+
+class InvitationAPIViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint that allows group invitations to be viewed."""
+
+    permission_classes = [IsAdminUser]
+    queryset = Invitation.objects.all().select_related('group', 'inviter')
+    serializer_class = InvitationSerializer
+
+
+class EmailReminderAPIViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint that allows email reminders to be viewed."""
+
+    permission_classes = [IsAdminUser]
+    queryset = EmailReminder.objects.all().select_related('user')
+    serializer_class = EmailReminderSerializer
